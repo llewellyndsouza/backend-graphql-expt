@@ -14,7 +14,6 @@ function getUserId(req, authToken) {
         throw new Error('No token found');
       }
       const { userId } = getTokenPayload(token);
-      console.log(userId);
       return userId;
     }
   } else if (authToken) {
