@@ -1,10 +1,24 @@
 const { PrismaClient } = require('@prisma/client');
+const { argsToArgsConfig } = require('graphql/type/definition');
 
 const prisma = new PrismaClient();
 
 async function main() {
   
-  const data = 
+  const data = prisma.link.findMany({
+    where: {
+      OR: [
+        {description: {
+          contains: args.filter
+        }},
+        {url: {
+          contains: args.filter
+        }}
+      ]
+    },
+    take: 10,
+    skip: 10
+  })
 
   console.log(data);
 }
