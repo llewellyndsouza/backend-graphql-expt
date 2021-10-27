@@ -1,6 +1,6 @@
 type Query {
   info: String!
-  feed(filter: String, take: Int, skip: Int): [Link!]!
+  feed(filter: String, take: Int, skip: Int, orderBy: LinkOrderByInput): [Link!]!
 }
 
 type Mutation {
@@ -39,4 +39,15 @@ type Vote {
   id: ID!
   user: User!
   link: Link!
+}
+
+input LinkOrderByInput {
+  description: Sort
+  url: Sort
+  createdAt: Sort
+}
+
+enum Sort {
+  asc
+  desc
 }
