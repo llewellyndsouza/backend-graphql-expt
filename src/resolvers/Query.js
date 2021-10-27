@@ -1,4 +1,4 @@
-function feed(parent, args, context, info) {
+async function feed(parent, args, context, info) {
   const { take, skip, orderBy } = args;
   const where = args.filter
     ? {
@@ -17,12 +17,19 @@ function feed(parent, args, context, info) {
       }
     : {};
 
-  return context.prisma.link.findMany({
+  const links = await context.prisma.link.findMany({
     where,
     take,
     skip,
     orderBy
   });
+
+  const count = await context.prisma.link.count({ where });
+
+  return {
+    links,
+    count
+  };
 }
 
 module.exports = {
